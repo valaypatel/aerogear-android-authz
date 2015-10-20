@@ -31,11 +31,11 @@ import java.util.UUID;
 import org.jboss.aerogear.android.core.Callback;
 
 /**
- * 
+ *
  * An Authorization module which works with the OAuth2 protocol.
- * 
+ *
  * Authorization is performed in a WebView and returned to the calling activity.
- * 
+ *
  */
 public class OAuth2WebViewAuthzModule extends OAuth2AuthzModule {
 
@@ -45,7 +45,7 @@ public class OAuth2WebViewAuthzModule extends OAuth2AuthzModule {
         AUTHZ_FILTER = new IntentFilter();
         AUTHZ_FILTER.addAction("org.jboss.aerogear.android.authz.RECEIVE_AUTHZ");
     }
-    
+
     private final String TAG = OAuth2WebViewAuthzModule.class.getSimpleName();
 
     public OAuth2WebViewAuthzModule(OAuth2Properties config) {
@@ -82,17 +82,17 @@ public class OAuth2WebViewAuthzModule extends OAuth2AuthzModule {
             throw new IllegalArgumentException("need to have accountId set");
         }
 
-        if (!service.hasAccount(accountId)) {
+        //if (!service.hasAccount(accountId)) {
 
             OAuth2WebFragmentFetchAutorization authzFetch = new OAuth2WebFragmentFetchAutorization(activity, state);
             authzFetch.performAuthorization(config, new OAuth2AuthorizationCallback(activity, callback, instance));
 
-        } else {
-
-            OAuth2FetchAccess fetcher = new OAuth2FetchAccess(service);
-            fetcher.fetchAccessCode(accountId, config, new OAuth2AccessCallback(activity, callback, instance));
-
-        }
+        // } else {
+        //
+        //     OAuth2FetchAccess fetcher = new OAuth2FetchAccess(service);
+        //     fetcher.fetchAccessCode(accountId, config, new OAuth2AccessCallback(activity, callback, instance));
+        //
+        // }
 
     }
 
